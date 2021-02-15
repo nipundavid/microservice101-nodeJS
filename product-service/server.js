@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 const app = express();
 const productData = require("./product-data.json");
 cors = require("cors");
@@ -11,11 +12,17 @@ app.get("/", (req, res) => {
   res.json(productData);
 });
 
-app.post("/", (req, res) => {
-  console.log(req.body);
-  return res.status(200).json({
-    message: `${req.body.title} -> buy request received for on PRODUCT-SERVICE`,
-  });
+app.post("/", async (req, res) => {
+  try {
+    console.log(req.body);
+    resFromOrderService = await axios.post("http://localhost:5001/", req.body);
+    return res.status(200).json({
+      message_from_product_service: `${req.body.title} -> buy request received on PRODUCT-SERVICE`,
+    });
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).send("server error");
+  }
 });
 
 app.listen(port, () => {

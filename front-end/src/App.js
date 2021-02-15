@@ -7,6 +7,7 @@ function App() {
   useEffect(async () => {
     const result = await axios.get("http://localhost:5000/");
     setProducts(result.data);
+    console.log("Data received from PRODUCT-SERVICE and populated on page");
   }, []);
   return (
     <div className="App">

@@ -5,10 +5,17 @@ cors = require("cors");
 const port = 5000;
 
 app.use(cors());
+app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => {
-  // res.send("Hello World!");
   res.json(productData);
+});
+
+app.post("/", (req, res) => {
+  console.log(req.body);
+  return res.status(200).json({
+    message: `${req.body.title} -> buy request received for on PRODUCT-SERVICE`,
+  });
 });
 
 app.listen(port, () => {

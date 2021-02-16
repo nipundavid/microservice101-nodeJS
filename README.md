@@ -1,3 +1,4 @@
+
 # Microservices 101
 
 Hi! this is microservice getting started template using NodeJS, which can be used to as a base app for any web-app
@@ -9,10 +10,14 @@ Hi! this is microservice getting started template using NodeJS, which can be use
 
 ## How to run
 
-1. Clone repo
-2. Start nodejs services using : `npm run server`
-3. Start reactJS app : `npm start`
-4. Click on the buy button on any of the product on page
+-  Clone repo
+-  Fire up five terminals - four for our microservices and one for front app application:
+-  Termial 1: `cd .\product-service\` `npm run server`
+-  Termial 2: `cd .\order-service\` `npm run server`
+-  Termial 3: `cd .\notification-service-1\` `npm run server`
+-  Termial 4: `cd .\notification-service-2\` `npm run server`
+-  Termial 5: `cd .\front-end\` `npm start`
+-  Open http://localhost:3000/ and click on any **BUY** button to see this in action
 
 ## Sequence diagram
 
@@ -23,3 +28,6 @@ using [Mermaid](https://mermaidjs.github.io/)
 ## Future implementation
 1. *gRPC* calls from *ProductService* to *OrderService* 
 2. *KAFKA* and *RabbitMQ* calls form *OrderService* to *NotificationService1* and *NotificationService2*
+
+
+

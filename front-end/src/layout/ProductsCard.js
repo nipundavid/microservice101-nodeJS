@@ -17,7 +17,7 @@ export const ProductsCard = (props) => {
     );
     let res = await axios.post("http://localhost:5000/", _product);
     if (res.status == 200) {
-      console.log("server response -> " + JSON.stringify(res.data));
+      console.log("server response -> " + JSON.stringify(res.data, null, 4));
     }
   };
 

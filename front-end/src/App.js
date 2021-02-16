@@ -14,7 +14,7 @@ function App() {
       {products.map((p) => {
         return (
           <div>
-            <ProductsCard product={p} />
+            <ProductsCard product={p} key={p.id} />
             <p />
           </div>
         );

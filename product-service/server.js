@@ -2,7 +2,6 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 const productData = require("./product-data.json");
-const { json } = require("express");
 cors = require("cors");
 const port = 5000;
 

@@ -28,7 +28,7 @@ using [Mermaid](https://mermaidjs.github.io/)
 
 
 ## Future implementation
-1. *gRPC* calls from *ProductService* to *OrderService* 
+1. *gRPC* calls from *ProductService* to *OrderService*  (**2.0 - WIP**)
 2. *KAFKA* and *RabbitMQ* calls form *OrderService* to *NotificationService1* and *NotificationService2*
 
 

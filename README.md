@@ -3,6 +3,8 @@
 
 Hi! this is microservice getting started template using NodeJS, which can be used to as a base app for any web-app
 
+**Note - Use the latest builds form the [tagged builds](https://github.com/nipundavid/microservice101-nodeJS/releases) as per your requirements**
+
 # Tech Stack
 
 1. *NodeJS+ExpressJS*

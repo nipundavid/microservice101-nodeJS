@@ -9,6 +9,7 @@ export const ProductsCard = (props) => {
       title: productDetails.product.title,
       description: productDetails.product.description,
       price: productDetails.product.price,
+      type: productDetails.product.type,
     };
     console.log(
       `${JSON.stringify(

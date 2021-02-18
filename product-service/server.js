@@ -19,11 +19,14 @@ app.get("/test", (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
-    resFromOrderService = gRPC_Client.main(req.body);
-    console.log(resFromOrderService);
+    console.log(
+      `Order received on API Server on PRODUCT-SERVICE -> ${req.body.title}`
+    );
+    // create gRPC call on product service
+    gRPC_Client.main(req.body);
+
     return res.status(200).json({
       message_from_product_service: `${req.body.title} -> buy request received on PRODUCT-SERVICE`,
-      message_from_order_service: `${resFromOrderService}`,
     });
   } catch (err) {
     console.log(err.message);

@@ -12,7 +12,9 @@ app.get("/test", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  // console.log(req.body);
+  console.log(
+    `Order received on API Server NOTIFICATION-SERVICE-2 ->  ${req.body.title}`
+  );
   return res.status(200).json({
     message_from_notification_service_2: `${req.body.title} -> buy request received on NOTIFICATION-SERVICE-2`,
   });

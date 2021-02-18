@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package employee;
+package product;
 
-service Employee {
+service Product {
 
-  rpc getDetails (EmployeeRequest) returns (EmployeeResponse) {}
+  rpc getDetails (ProductRequest) returns (ProductResponse) {}
 }
 
 
-message EmployeeRequest {
+message ProductRequest {
   int32 id = 1;
   string title = 2;
   string description = 3; 
@@ -16,10 +16,10 @@ message EmployeeRequest {
   string type = 5;
 }
 
-message EmployeeResponse{
+message ProductResponse{
   string message = 1;
 }
-message EmployeeDetails {
+message ProductDetails {
   int32 id = 1;
   string title = 2;
   string description = 3; 

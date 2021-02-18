@@ -1,7 +1,7 @@
-const PROTO_PATH = __dirname + "/proto/employee.proto";
-
+const path = require("path");
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
+const PROTO_PATH = path.join(__dirname, "../proto/product.proto");
 let resFromOrderService;
 
 let packageDefinition = protoLoader.loadSync(PROTO_PATH, {
@@ -11,10 +11,10 @@ let packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   defaults: true,
   oneofs: true,
 });
-let employee_proto = grpc.loadPackageDefinition(packageDefinition).employee;
+let product_proto = grpc.loadPackageDefinition(packageDefinition).product;
 
 module.exports.main = function (_productData) {
-  let client = new employee_proto.Employee(
+  let client = new product_proto.Product(
     "localhost:4500",
     grpc.credentials.createInsecure()
   );

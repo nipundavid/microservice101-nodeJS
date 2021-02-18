@@ -13,11 +13,7 @@ app.get("/test", (req, res) => {
 
 app.post("/", (req, res) => {
   console.log(
-    `Order received on API Server NOTIFICATION-SERVICE-1 \/n ${JSON.stringify(
-      res,
-      null,
-      4
-    )}`
+    `Order received on API Server NOTIFICATION-SERVICE-1 ->  ${req.body.title}`
   );
   return res.status(200).json({
     message_from_notification_service_1: `${req.body.title} -> buy request received on NOTIFICATION-SERVICE-1`,

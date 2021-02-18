@@ -11,14 +11,9 @@ export const ProductsCard = (props) => {
       price: productDetails.product.price,
       type: productDetails.product.type,
     };
-    console.log(
-      `${JSON.stringify(
-        _product.title
-      )} -> buy request raised from font-end app`
-    );
     let res = await axios.post("http://localhost:5000/", _product);
     if (res.status == 200) {
-      console.log("server response -> " + JSON.stringify(res.data, null, 4));
+      console.log("Message successfully delivered to PRODUCT-SERVICE");
     }
   };
 

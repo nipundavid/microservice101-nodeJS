@@ -25,32 +25,37 @@ const main = function () {
 
 function getDetails(call, callback) {
   console.log(
-    `Order received on gRPC Server on ORDER-SERVICE \/n ${JSON.stringify(
-      call.request,
-      null,
-      4
-    )}`
+    `Order received on gRPC Server on ORDER-SERVICE  ${call.request.title}`
   );
-  // await sendMessageToNotificationService(call.request);
+  //send messgae to notification services
+  responseFromNotificationServices = sendMessageToNotificationService(
+    call.request
+  );
+  //validating if message sent to NOTIFICATION-SERVICES
+  if (responseFromNotificationServices) {
+    console.log(
+      `Message sent to one or more NOTIFICATION-SERVICES for -> ${call.request.title}`
+    );
+  }
+  //return to gRPC Client
   callback(null, {
     message: `${call.request.title} -> buy request received on ORDER-SERVICE`,
+    responseFromNotificationServices: responseFromNotificationServices,
   });
 }
 
 async function sendMessageToNotificationService(product) {
   try {
     // console.log(req.body);
-    resFromNotificationService1 = await axios.post(
-      "http://localhost:5002/",
-      product
-    );
-    resFromNotificationService2 = await axios.post(
-      "http://localhost:5003/",
-      product
-    );
+    await axios.post("http://localhost:5002/", product);
+    await axios.post("http://localhost:5003/", product);
+    // to check success
+    return true;
   } catch (err) {
-    console.log(err.message);
-    return res.status(500).send("server error");
+    console.log(
+      `Could not send message to one or more NOTIFICATION-SERVICES for -> ${call.request.title}, error -> ${err.message}`
+    );
+    return false;
   }
 }
 

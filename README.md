@@ -37,8 +37,9 @@ Hi! this is microservice getting started template using NodeJS, which can be use
 **SequenceDiagram** - using [Mermaid](https://mermaid-js.github.io/mermaid-live-editor)
 
 ## Future implementation
-1. *gRPC* calls from *ProductService* to *OrderService*  (**2.0 - WIP**)
-2. *KAFKA* and *RabbitMQ* calls form *OrderService* to *NotificationService1* and *NotificationService2*
+1. *gRPC* calls from *ProductService* to *OrderService*  (**2.0 - done, please check releases**)
+2. *RabbitMQ* call form *OrderService* to *NotificationService1*(**3.0 - WIP**)
+3. *KAFKA* call form *OrderService* to *NotificationService2*
 
 
 

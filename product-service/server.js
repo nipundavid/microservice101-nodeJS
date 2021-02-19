@@ -20,7 +20,7 @@ app.get("/test", (req, res) => {
 app.post("/", async (req, res) => {
   try {
     console.log(
-      `Order received on API Server on PRODUCT-SERVICE -> ${req.body.title}`
+      `PRODUCT-SERVICE -> Order received on API Server: ${req.body.title}`
     );
     // create gRPC call on product service
     gRPC_Client.main(req.body);

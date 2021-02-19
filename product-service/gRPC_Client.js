@@ -26,7 +26,7 @@ module.exports.main = function (_productData) {
     price: _productData.price,
   };
   console.log(
-    `Order sent from gRPC client from PRODUCT-SERVICE to ORDER-SERVICE ->  ${productData.title}`
+    `PRODUCT-SERVICE -> Order sent from gRPC client to ORDER-SERVICE: ${productData.title}`
   );
   client.getDetails(productData, function (err, response) {
     resFromOrderService = response.message;

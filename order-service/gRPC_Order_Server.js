@@ -3,6 +3,7 @@ const PROTO_PATH = path.join(__dirname, "../proto/product.proto");
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 const axios = require("axios");
+const orderNotificationRabbitMQ = require("./order_received_msg_producer_rabbitMQ.js");
 
 let packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -25,18 +26,13 @@ const main = function () {
 
 function getDetails(call, callback) {
   console.log(
-    `Order received on gRPC Server on ORDER-SERVICE  ${call.request.title}`
+    `ORDER-SERVICE -> Order received on gRPC Server: ${call.request.title}`
   );
   //send messgae to notification services
   responseFromNotificationServices = sendMessageToNotificationService(
     call.request
   );
-  //validating if message sent to NOTIFICATION-SERVICES
-  if (responseFromNotificationServices) {
-    console.log(
-      `Message sent to one or more NOTIFICATION-SERVICES for -> ${call.request.title}`
-    );
-  }
+
   //return to gRPC Client
   callback(null, {
     message: `${call.request.title} -> buy request received on ORDER-SERVICE`,
@@ -46,14 +42,13 @@ function getDetails(call, callback) {
 
 async function sendMessageToNotificationService(product) {
   try {
-    // console.log(req.body);
-    await axios.post("http://localhost:5002/", product);
+    orderNotificationRabbitMQ.order_received_msg_producer(product);
     await axios.post("http://localhost:5003/", product);
     // to check success
     return true;
   } catch (err) {
     console.log(
-      `Could not send message to one or more NOTIFICATION-SERVICES for -> ${call.request.title}, error -> ${err.message}`
+      `ORDER-SERVICE -> Could not send message to one or more NOTIFICATION-SERVICES for -> ${call.request.title}, error -> ${err.message}`
     );
     return false;
   }

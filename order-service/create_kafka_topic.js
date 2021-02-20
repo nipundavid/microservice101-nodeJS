@@ -6,7 +6,7 @@ module.exports.create_kafka_topic = async function (topicName) {
   try {
     const kafka = new Kafka({
       clientId: "myapp",
-      brokers: ["localhost:9092"],
+      brokers: ["localhost:9094"],
     });
     const admin = kafka.admin();
     console.log("Connecting....");
@@ -32,7 +32,8 @@ module.exports.create_kafka_topic = async function (topicName) {
       topics: [
         {
           topic: topicName,
-          numPartitions: 2,
+          numPartitions: 3,
+          replicationFactor: 3,
         },
       ],
     });

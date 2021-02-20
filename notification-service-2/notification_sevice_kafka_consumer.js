@@ -4,10 +4,10 @@ async function notification_sevice_kafka_consumer() {
   try {
     const kafka = new Kafka({
       clientId: "myapp",
-      brokers: ["localhost:9092"],
+      brokers: ["localhost:9094"],
     });
     const consumer = kafka.consumer({
-      groupId: "product",
+      groupId: topicName,
     });
     console.log("Connecting....");
     await consumer.connect();
@@ -15,7 +15,7 @@ async function notification_sevice_kafka_consumer() {
 
     consumer.subscribe({
       topic: topicName,
-      fromBeginning: false,
+      fromBeginning: true,
     });
 
     await consumer.run({
@@ -27,6 +27,8 @@ async function notification_sevice_kafka_consumer() {
     });
   } catch (error) {
     console.log(error);
+    console.log("Not able to find broker hence exiting");
+    process.exit(0);
   }
 }
 

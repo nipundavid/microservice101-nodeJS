@@ -53,18 +53,23 @@ Also in this release order-service sends the message to notification-service-1 v
 - Start nodejs services in four terminals :
 
 `cd .\product-service\`
+`npm install`
 `npm run server`
 
 `cd .\order-service\ `
+`npm install`
 `npm run server`
 
 `cd .\notification-service-1\`
+`npm install`
 `npm run server`
 
 `cd .\notification-service-2\`
+`npm install`
 `npm run server`
 - Start reactJS app :
 `cd .\front-end\   `
+`npm install`
 `npm start`
 
 -  Open http://localhost:3000/ and click on any button to see this in action

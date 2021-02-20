@@ -1,7 +1,7 @@
 const amqplib = require("amqplib");
 var amqp_url = process.env.CLOUDAMQP_URL || "amqp://localhost:5672";
 
-module.exports.order_received_msg_producer = async function (product) {
+module.exports.order_service_rabbitMQ_producer = async function (product) {
   try {
     console.log(
       `ORDER-SERVICE -> Message sent via RabbitMQ to NOTIFICATION-SERVICE-1: ${product.title}`

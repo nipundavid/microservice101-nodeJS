@@ -1,6 +1,7 @@
 const path = require("path");
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
+const { json } = require("express");
 const PROTO_PATH = path.join(__dirname, "../proto/product.proto");
 let resFromOrderService;
 
@@ -29,8 +30,8 @@ module.exports.main = function (_productData) {
     `PRODUCT-SERVICE -> Order sent from gRPC client to ORDER-SERVICE: ${productData.title}`
   );
   client.getDetails(productData, function (err, response) {
-    resFromOrderService = response.message;
+    if (response != null) {
+      resFromOrderService = response.message;
+    }
   });
-
-  return resFromOrderService;
 };

@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "grpc": "^1.24.5",
+    "kafkajs": "^1.15.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

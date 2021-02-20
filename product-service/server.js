@@ -4,7 +4,7 @@ const app = express();
 const productData = require("./product-data.json");
 const cors = require("cors");
 const port = 5000;
-var gRPC_Client = require("./gRPC_Client.js");
+const gRPC_Client = require("./gRPC_Client.js");
 
 app.use(cors());
 app.use(express.json({ extended: false }));

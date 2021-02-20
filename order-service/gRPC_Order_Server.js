@@ -3,7 +3,10 @@ const PROTO_PATH = path.join(__dirname, "../proto/product.proto");
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 const axios = require("axios");
-const orderNotificationRabbitMQ = require("./order_received_msg_producer_rabbitMQ.js");
+const orderNotificationRabbitMQ = require("./order_service_msg_producer_rabbitMQ.js");
+const kafkaCreateTopic = require("./create_kafka_topic.js");
+const kafkaProducer = require("./order_service_kafka_producer.js");
+const kafkaTopic = "product";
 
 let packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -42,8 +45,12 @@ function getDetails(call, callback) {
 
 async function sendMessageToNotificationService(product) {
   try {
-    orderNotificationRabbitMQ.order_received_msg_producer(product);
-    await axios.post("http://localhost:5003/", product);
+    //sends msg to rabbitMQ
+    orderNotificationRabbitMQ.order_service_rabbitMQ_producer(product);
+    //create kafka topic if not already there
+    kafkaCreateTopic.create_kafka_topic(kafkaTopic);
+    // send msg to Kafka
+    kafkaProducer.order_service_kafka_producer(JSON.stringify(product));
     // to check success
     return true;
   } catch (err) {

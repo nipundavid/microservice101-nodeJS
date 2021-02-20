@@ -74,6 +74,8 @@ Also in this release order-service sends the message to notification-service-1 v
 
 -  Open http://localhost:3000/ and click on any button to see this in action
 
+![image](https://drive.google.com/uc?export=view&id=1Rst9cn3TnCUZ8z0obaXgWbvvlDGvbdPD)
+
 ## How to test
 Assuming that all the services are running as mentioned above, see logs on console
 

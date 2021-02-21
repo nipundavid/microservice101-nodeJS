@@ -1,7 +1,9 @@
 
 ## Microservice101 (gRPC +RabbitMQ + Kafka)
+This is microservice getting started template using NodeJS, which can be used to as a base app for any web-app
+-**Note - Use the latest builds form the [tagged builds](https://github.com/nipundavid/microservice101-nodeJS/releases) as per your requirements**
 
-In this release, product-service sends messages to order-service via gRPC and from there order-service sends the message on RabbitMQ from where notification-service-1 dequeue it and publishes in the console. 
+Product-service sends messages to order-service via gRPC and from there order-service sends the message on RabbitMQ from where notification-service-1 dequeue it and publishes in the console. 
 
 Also in this release order-service sends the message to notification-service-1 via Kafka.
 
